@@ -27,13 +27,21 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .logo {
-            margin: 1rem auto;
+            margin: 0.5rem auto;
             max-width: 100%;
             height: auto;
             max-width: 200px;
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 0.5rem;
         }
 
         nav ul {
@@ -43,31 +51,32 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         nav ul li a {
             color: #000;
             text-decoration: none;
             font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.8rem;
             border: 2px solid #000;
             border-radius: 20px;
             transition: all 0.3s ease;
             display: inline-block;
+            background-color: rgba(255, 255, 255, 0.8);
         }
 
         nav ul li a:hover {
             background-color: #000;
             color: #fff;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .hero {
             text-align: center;
             padding: 4rem 1rem;
-            background: linear-gradient(rgba(0, 74, 173, 0.7), rgba(0, 74, 173, 0.7)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 74, 173, 0.7), rgba(0, 74, 173, 0.7)), url('https://images.unsplash.com/photo-1564466809059-ba2b1b275161?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: #fff;
             font-family: 'Playfair Display', serif;
         }
@@ -150,17 +159,22 @@
         .studio-name {
             display: inline-block;
             white-space: nowrap;
+            font-weight: bold;
         }
 
-        /* Menú hamburguesa para móviles */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #000;
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #fff;
             font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
+            margin: 0 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
         }
 
         /* Media queries para responsividad */
@@ -178,22 +192,12 @@
             }
             
             nav ul {
-                display: none;
-                flex-direction: column;
-                gap: 0.5rem;
-                width: 100%;
-                padding: 1rem 0;
+                gap: 0.3rem;
             }
             
-            nav ul.show {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
+            nav ul li a {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.7rem;
             }
             
             .about h2 {
@@ -219,7 +223,6 @@
                 padding-left: 1rem;
             }
             
-            /* Solución específica para el nombre del estudio */
             .studio-name {
                 font-size: 1.7rem;
                 display: inline;
@@ -250,9 +253,18 @@
                 font-size: 0.95rem;
             }
             
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.2rem;
+            }
+            
             nav ul li a {
-                font-size: 0.9rem;
-                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem;
             }
             
             .studio-name {
@@ -264,10 +276,6 @@
 <body>
     <header role="banner">
         <img src="img/Logo%20Fotograf%C3%ADa%20de%20Moda%20Caligr%C3%A1fico%20Elegante%20Negro%20y%20Beige_20250415_113231_0000.jpg" alt="Logo Estudio Art & Impression" class="logo">
-        
-        <button class="mobile-menu-btn" aria-label="Menú de navegación">
-            <i class="fas fa-bars"></i>
-        </button>
         
         <nav role="navigation">
             <ul>
@@ -309,38 +317,11 @@
     <footer>
         <p>&copy; 2025 Estudio Art & Impression. Todos los derechos reservados. Síguenos en redes sociales para más información y promociones exclusivas.</p>
         <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
-
-    <script>
-        // Menú móvil
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.querySelector('nav ul');
-        
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            
-            // Cambiar ícono
-            const icon = menuBtn.querySelector('i');
-            if (icon.classList.contains('fa-bars')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('show');
-                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
-            });
-        });
-    </script>
 </body>
 </html>
