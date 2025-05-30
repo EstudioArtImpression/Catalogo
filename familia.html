@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora nuestra galería de fotos familiares. Capturamos momentos inolvidables llenos de amor y alegría.">
+    <title>Familia - Estudio Art & Impression</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+        :root {
+            --primary-color: #001933;
+            --accent-color: #004AAD;
+            --light-bg: #f4f4f4;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            padding: 0.8rem 1rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 130px;
+            height: auto;
+            margin-bottom: 0.8rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .gallery-header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(rgba(0, 74, 173, 0.85), rgba(0, 74, 173, 0.85));
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                width: 100%;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            nav ul.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                width: 100%;
+                padding: 0.8rem;
+            }
+            
+            .gallery-header {
+                padding: 2rem 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+                padding: 0 0.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                max-width: 110px;
+            }
+            
+            .gallery-header {
+                padding: 1.8rem 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 3/4;
+            }
+            
+            footer {
+                padding: 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="img/Logo%20Fotograf%C3%ADa%20de%20Moda%20Caligr%C3%A1fico%20Elegante%20Negro%20y%20Beige_20250415_113231_0000.jpg" alt="Logo Estudio Art & Impression" class="logo">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="precios.html">Contratos y Precios</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gallery-header">
+        <h1>Familias</h1>
+        <p>Momentos inolvidables llenos de amor y alegría</p>
+    </section>
+
+    <main>
+        <!-- Contenedor de la galería -->
+        <section class="gallery-container" id="galleryContainer">
+            <!-- Las imágenes se cargarán dinámicamente -->
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Foto ampliada">
+            <button class="close-btn" id="closeBtn">×</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Estudio Art & Impression. Todos los derechos reservados. Especialistas en fotografía familiar en Cárdenas, Matanzas, Cuba.</p>
+    </footer>
+
+    <script>
+        // Datos de imágenes
+        const familyImages = [
+            "ANMP2278.webp",
+            "ANMP2645.webp",
+            "ANMP3035.webp",
+            "IMG_0175A.webp",
+            "IMG_0196A.webp",
+            "IMG_0211.webp",
+            "IMG_0261.webp",
+            "IMG_0378.webp",
+            "IMG_0399.webp",
+            "IMG_0508.webp",
+            "IMG_0549.webp",
+            "IMG_0553.webp",
+            "IMG_0558.webp",
+            "IMG_1092.webp",
+            "IMG_1322.webp",
+            "IMG_1350.webp",
+            "IMG_1377.webp",
+            "IMG_1391.webp",
+            "IMG_1470.webp"
+        ];
+
+        // Mezclar imágenes aleatoriamente
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Referencias a elementos del DOM
+        const galleryContainer = document.getElementById('galleryContainer');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeBtn = document.getElementById('closeBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        // Cargar galería
+        function loadGallery() {
+            galleryContainer.innerHTML = '';
+            
+            shuffleArray(familyImages).forEach(image => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = `img/familiares/${image}`;
+                img.alt = "Foto familiar";
+                img.loading = "lazy";
+                
+                item.appendChild(img);
+                galleryContainer.appendChild(item);
+                
+                // Agregar evento para abrir lightbox
+                img.addEventListener('click', () => {
+                    lightboxImage.src = `img/familiares/${image}`;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+        }
+
+        // Cerrar lightbox
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Cerrar al hacer clic fuera de la imagen
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Menú móvil
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Cargar la galería cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+</body>
+</html>

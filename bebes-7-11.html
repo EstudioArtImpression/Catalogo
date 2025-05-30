@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora nuestra galería de fotos artísticas de bebés de 7 a 11 meses. Capturamos momentos llenos de ternura y energía.">
+    <title>Bebés (7-11 meses) - Estudio Art & Impression</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+        :root {
+            --primary-color: #001933;
+            --accent-color: #004AAD;
+            --light-bg: #f4f4f4;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            padding: 0.8rem 1rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 130px;
+            height: auto;
+            margin-bottom: 0.8rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            transition: var(--transition);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .gallery-header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(135deg, #004AAD, #1a75ff);
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            text-align: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: var(--white);
+            font-size: 2.2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .photo-counter {
+            color: var(--white);
+            font-size: 1rem;
+            margin-top: 15px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.8rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                width: 100%;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            nav ul.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                width: 100%;
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+            
+            .gallery-header {
+                padding: 2rem 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+                padding: 0 0.8rem 1.5rem;
+            }
+            
+            .gallery-header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                max-width: 110px;
+            }
+            
+            .gallery-header {
+                padding: 1.8rem 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 3/4;
+            }
+            
+            footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .lightbox-content img {
+                max-height: 70vh;
+            }
+            
+            .close-btn {
+                top: -40px;
+                font-size: 1.9rem;
+            }
+            
+            .photo-counter {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .gallery-header p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="img/Logo%20Fotograf%C3%ADa%20de%20Moda%20Caligr%C3%A1fico%20Elegante%20Negro%20y%20Beige_20250415_113231_0000.jpg" alt="Logo Estudio Art & Impression" class="logo">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="precios.html" class="active">Contratos y Precios</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gallery-header">
+        <h1>Bebés de 7 a 11 meses</h1>
+        <p>Momentos llenos de ternura y energía capturados con creatividad</p>
+    </section>
+
+    <main>
+        <section class="gallery-container" id="galleryContainer">
+            <!-- Las imágenes se cargarán dinámicamente -->
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Foto ampliada">
+            <button class="close-btn" id="closeBtn">×</button>
+            <div class="photo-counter" id="photoCounter"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Estudio Art & Impression. Todos los derechos reservados. Especialistas en fotografía de bebés en Cárdenas, Matanzas, Cuba. Capturamos los momentos más especiales de crecimiento.</p>
+    </footer>
+
+    <script>
+        // Datos de imágenes específicas para bebés de 7-11 meses
+        const images = [
+            "8x12.webp", "8x2.webp", "ANMP1969.webp", "ANMP2064.1.webp",
+            "ANMP2328.webp", "ANMP2335.webp", "ANMP2337.webp", "ANMP2471.webp",
+            "ANMP2834.webp", "ANMP2838.webp", "ANMP2854.webp", "IMG_0435.webp",
+            "IMG_0449.webp", "IMG_0985.webp", "IMG_0988.webp", "IMG_0991.webp",
+            "IMG_1036 8x12.webp", "IMG_1036.webp", "IMG_1039.webp", "IMG_1051.webp",
+            "IMG_1065.webp", "IMG_1092.webp", "IMG_1252.webp", "IMG_1263.webp",
+            "IMG_1266.webp", "IMG_1276.webp", "IMG_1279.webp", "IMG_1288.webp",
+            "IMG_3066.webp", "IMG_3070.webp", "IMG_3071.webp", "IMG_3084.webp",
+            "IMG_3106.webp"
+        ];
+
+        // Mezclar imágenes aleatoriamente
+        images.sort(() => Math.random() - 0.5);
+
+        // Referencias a elementos del DOM
+        const galleryContainer = document.getElementById('galleryContainer');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeBtn = document.getElementById('closeBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const photoCounter = document.getElementById('photoCounter');
+
+        let currentImageIndex = 0;
+
+        // Cargar galería
+        function loadGallery() {
+            galleryContainer.innerHTML = '';
+            
+            images.forEach((image, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                // Corregir ruta de imágenes
+                img.src = `img/7-11/${image}`;
+                img.alt = `Foto artística de bebé de 7 a 11 meses ${index + 1}`;
+                img.loading = "lazy";
+                img.dataset.index = index;
+                
+                item.appendChild(img);
+                galleryContainer.appendChild(item);
+                
+                // Agregar evento para abrir lightbox
+                img.addEventListener('click', (e) => {
+                    const clickedIndex = parseInt(e.target.dataset.index);
+                    openLightbox(clickedIndex);
+                });
+            });
+        }
+
+        // Abrir lightbox en un índice específico
+        function openLightbox(index) {
+            currentImageIndex = index;
+            // Corregir ruta de imágenes para lightbox
+            lightboxImage.src = `img/7-11/${images[index]}`;
+            updatePhotoCounter();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Agregar eventos de teclado
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        // Actualizar contador de fotos
+        function updatePhotoCounter() {
+            photoCounter.textContent = `${currentImageIndex + 1} de ${images.length}`;
+        }
+
+        // Navegar entre imágenes
+        function navigateImages(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            
+            // Corregir ruta de imágenes para navegación
+            lightboxImage.src = `img/7-11/${images[currentImageIndex]}`;
+            updatePhotoCounter();
+        }
+
+        // Manejar teclas de navegación
+        function handleKeyPress(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                navigateImages(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateImages(1);
+            }
+        }
+
+        // Cerrar lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+
+        // Cerrar lightbox al hacer clic en el botón
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // Cerrar al hacer clic fuera de la imagen
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Menú móvil
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Cambiar ícono según estado
+            menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // Cerrar menú al hacer scroll
+        window.addEventListener('scroll', () => {
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        // Botones de navegación táctil para lightbox
+        document.querySelector('.lightbox-content').addEventListener('click', (e) => {
+            if (e.target === lightboxImage) {
+                const rect = lightboxImage.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const imageWidth = rect.width;
+                
+                // Si se hizo clic en el lado izquierdo de la imagen
+                if (clickX < imageWidth / 3) {
+                    navigateImages(-1);
+                } 
+                // Si se hizo clic en el lado derecho de la imagen
+                else if (clickX > imageWidth * 2 / 3) {
+                    navigateImages(1);
+                }
+            }
+        });
+
+        // Cargar la galería cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+</body>
+</html>

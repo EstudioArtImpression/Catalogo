@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora el portafolio de Estudio Art & Impression. Fotografías artísticas de bebés, niños, parejas, bodas y eventos.">
+    <title>Catálogo - Estudio Art & Impression</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+        :root {
+            --primary-color: #001933;
+            --accent-color: #004AAD;
+            --light-bg: #f4f4f4;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            padding: 0.8rem 1rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 130px;
+            height: auto;
+            margin-bottom: 0.8rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            transition: var(--transition);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* ENCABEZADO CON AZUL CLARO */
+        .portfolio-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--accent-color);
+            color: var(--white);
+            position: relative;
+        }
+
+        .portfolio-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* FONDO NÍTIDO SIN DEGRADADO */
+        .categories-section {
+            position: relative;
+            padding: 2rem 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 1rem;
+            overflow: hidden;
+            background: url('img/fondo.webp') no-repeat center center;
+            background-size: cover;
+            filter: contrast(1.15) brightness(1.05) saturate(1.1);
+        }
+
+        .portfolio-category {
+            margin-bottom: 2.5rem;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* NUEVO ESTILO PARA ENCABEZADOS CON RECTÁNGULO REDONDEADO */
+        .portfolio-category h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 1;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        /* Línea decorativa debajo del encabezado */
+        .portfolio-category h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem; /* Más espacio arriba de los botones */
+        }
+
+        .portfolio-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--primary-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            text-align: center;
+            border: 2px solid transparent;
+            backdrop-filter: blur(1px);
+        }
+
+        .portfolio-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+            background-color: rgba(249, 249, 249, 0.98);
+        }
+
+        .portfolio-button i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .portfolio-button span {
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,20 Q50,0 100,20 Z" fill="%23001933"/></svg>');
+            background-size: 100% 100%;
+        }
+
+        footer p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                width: 100%;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            nav ul.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                width: 100%;
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+            
+            .portfolio-header {
+                padding: 2rem 1rem;
+            }
+            
+            .portfolio-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .portfolio-header p {
+                font-size: 1rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .portfolio-category h2 {
+                font-size: 1.6rem;
+                padding: 10px 20px;
+            }
+            
+            .portfolio-button {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                max-width: 110px;
+            }
+            
+            .portfolio-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .portfolio-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .portfolio-category h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1.2rem;
+                padding: 8px 15px;
+            }
+            
+            .portfolio-category h2::after {
+                width: 70px;
+                bottom: -8px;
+            }
+            
+            .portfolio-button {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            
+            .portfolio-button i {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            footer {
+                padding: 2rem 1rem;
+            }
+            
+            .categories-section {
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="img/Logo%20Fotograf%C3%ADa%20de%20Moda%20Caligr%C3%A1fico%20Elegante%20Negro%20y%20Beige_20250415_113231_0000.jpg" alt="Logo Estudio Art & Impression" class="logo">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html" class="active">Catálogo</a></li>
+                    <li><a href="precios.html">Contratos y Precios</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="portfolio-header">
+        <h1>Explora Nuestro Catálogo</h1>
+        <p>Descubre la belleza de nuestras fotografías artísticas para cada momento especial</p>
+    </section>
+
+    <main class="portfolio-container">
+        <!-- SECCIÓN CON FONDO AJUSTADO PARA MEJOR NITIDEZ -->
+        <section class="categories-section">
+            <div class="portfolio-category">
+                <h2>Bebés</h2>
+                <div class="portfolio-grid">
+                    <a class="portfolio-button" href="bebes-0-3.html">
+                        <i class="fas fa-baby"></i>
+                        <span>Recién nacidos (0-3 meses)</span>
+                    </a>
+                    <a class="portfolio-button" href="bebes-4-6.html">
+                        <i class="fas fa-baby-carriage"></i>
+                        <span>4-6 meses</span>
+                    </a>
+                    <a class="portfolio-button" href="bebes-7-11.html">
+                        <i class="fas fa-baby"></i>
+                        <span>7-11 meses</span>
+                    </a>
+                    <a class="portfolio-button" href="ninos-1-ano.html">
+                        <i class="fas fa-cake-candles"></i>
+                        <span>1 año</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="portfolio-category">
+                <h2>Niños</h2>
+                <div class="portfolio-grid">
+                    <a class="portfolio-button" href="ninos.html">
+                        <i class="fas fa-child"></i>
+                        <span>Ver Galería</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="portfolio-category">
+                <h2>Parejas y Bodas</h2>
+                <div class="portfolio-grid">
+                    <a class="portfolio-button" href="parejas.html">
+                        <i class="fas fa-heart"></i>
+                        <span>Ver Galería</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="portfolio-category">
+                <h2>Fotos de Familia</h2>
+                <div class="portfolio-grid">
+                    <a class="portfolio-button" href="familia.html">
+                        <i class="fas fa-users"></i>
+                        <span>Ver Galería</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="portfolio-category">
+                <h2>Sesiones Exteriores</h2>
+                <div class="portfolio-grid">
+                    <a class="portfolio-button" href="exteriores.html">
+                        <i class="fas fa-tree"></i>
+                        <span>Ver Galería</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Estudio Art & Impression. Todos los derechos reservados. Fotografía profesional en Cárdenas, Matanzas, Cuba.</p>
+    </footer>
+
+    <script>
+        // Script para el menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                // Cambiar ícono según estado
+                menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            document.querySelectorAll('#navMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                });
+            });
+            
+            // Cerrar menú al hacer scroll
+            window.addEventListener('scroll', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

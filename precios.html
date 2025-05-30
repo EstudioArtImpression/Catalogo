@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contratos y precios de nuestros servicios fotográficos en Cárdenas, Matanzas, Cuba." />
+  <title>Contratos y Precios - Estudio Art & Impression</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+    :root {
+      --primary-color: #004AAD;
+      --secondary-color: #f4f4f4;
+      --text-dark: #333;
+      --text-light: #fff;
+      --card-bg: #fff;
+      --border-color: #ddd;
+      --accent-color: #d4af37;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      color: var(--text-dark);
+      padding: 0.8rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 0.8rem;
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    nav ul li a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+      border: 2px solid var(--text-dark);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--text-dark);
+      color: var(--text-light);
+      transform: scale(1.05);
+    }
+
+    .pricing-header {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      font-family: 'Playfair Display', serif;
+      margin: 1rem auto;
+      max-width: 95%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem;
+    }
+
+    .category-toggle {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin: 0.5rem 0;
+      width: 100%;
+      text-align: left;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .category-toggle:after {
+      content: '▼';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+
+    .category-toggle.active:after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .category-toggle:hover {
+      background-color: #003b8a;
+    }
+
+    .pricing-section {
+      margin: 1rem 0;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+    }
+
+    .pricing-section.active {
+      max-height: 3000px;
+    }
+
+    .pricing-section h2 {
+      text-align: center;
+      padding: 1.2rem;
+      background-color: rgba(0, 74, 173, 0.1);
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+    }
+
+    .contracts-container {
+      padding: 0 1rem;
+    }
+
+    .contract {
+      margin: 1rem 0;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contract:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background-color: var(--accent-color);
+    }
+
+    .contract h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .contract h3 .contract-name {
+      flex: 1 1 70%;
+    }
+
+    .contract h3 .price {
+      flex: 1 1 30%;
+      text-align: right;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .contract p {
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .contract p:before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+    }
+
+    .note {
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 0.8rem;
+      padding: 0.5rem;
+      background-color: rgba(212, 175, 55, 0.1);
+      border-left: 3px solid var(--accent-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Media Queries para dispositivos móviles */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0;
+      }
+      
+      nav ul {
+        gap: 0.5rem;
+      }
+      
+      nav ul li a {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.7rem;
+      }
+      
+      .pricing-header {
+        padding: 1rem;
+      }
+      
+      .pricing-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .contract h3 {
+        flex-direction: column;
+      }
+      
+      .contract h3 .price {
+        text-align: left;
+        margin-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        max-width: 120px;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      
+      nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+      
+      nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+      }
+      
+      .contract {
+        padding: 1rem;
+      }
+      
+      .contract p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <img src="img/Logo%20Fotograf%C3%ADa%20de%20Moda%20Caligr%C3%A1fico%20Elegante%20Negro%20y%20Beige_20250415_113231_0000.jpg" alt="Logo Estudio Art & Impression" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="precios.html">Contratos y Precios</a></li>
+          <li><a href="contacto.html">Contáctanos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="pricing-header">
+    <h1>Contratos y Precios</h1>
+    <p>Conoce nuestros servicios y elige el que mejor se adapte a tus necesidades</p>
+  </section>
+
+  <main class="pricing-container">
+    <!-- Contratos de Fotos de Estudio (Impresas) -->
+    <button class="category-toggle active">Fotos de Estudio (Fotos Impresas) - Bebé</button>
+    <div class="pricing-section active">
+      <h2>Fotos de Estudio Impresas para Bebé</h2>
+      <div class="contracts-container">
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #1 (Solo el bebé)</span>
+            <span class="price">9 USD o 3500 CUP</span>
+          </h3>
+          <p>3 fotos 5x7 impresas</p>
+          <p>6 postales de bolsillo</p>
+          <p>1 escenografía</p>
+          <p>1 vestuario (del cliente o del estudio)</p>
+          <p class="note">Nota: Las fotos impresas también se entregan en formato digital</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #2 (Bebé y familia)</span>
+            <span class="price">14 USD o 5000 CUP</span>
+          </h3>
+          <p>5 fotos 5x7 impresas</p>
+          <p>1 ampliación 8x12</p>
+          <p>6 postales de bolsillo</p>
+          <p>2 escenografías</p>
+          <p>2 vestuarios</p>
+          <p class="note">Nota: Las fotos impresas también se entregan en formato digital</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Fotografías de Estudio (Digitales) -->
+    <button class="category-toggle">Fotografías de Estudio (Fotos Digitales) - Bebés</button>
+    <div class="pricing-section">
+      <h2>Fotografías de Estudio Digitales para Bebés</h2>
+      <div class="contracts-container">
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #1 (Solo el bebé)</span>
+            <span class="price">7 USD o 2300 CUP</span>
+          </h3>
+          <p>3 fotos digitales editadas</p>
+          <p>1 escenografía</p>
+          <p>1 vestuario (del cliente o del estudio)</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #2 (El bebé y familia)</span>
+            <span class="price">12 USD o 4300 CUP</span>
+          </h3>
+          <p>8 fotos digitales editadas</p>
+          <p>2 escenografías</p>
+          <p>3 vestuarios (2 proporcionados por el estudio)</p>
+          <p class="note">Nota: Los vestuarios incluidos dependen de la edad del bebé</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sesiones de Fotos Naturales en Exteriores (Impresas) -->
+    <button class="category-toggle">Sesiones en Exteriores (Fotos Impresas) - Niños desde 1 año</button>
+    <div class="pricing-section">
+      <h2>Sesiones en Exteriores con Fotos Impresas</h2>
+      <div class="contracts-container">
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #1 (Solo el niño)</span>
+            <span class="price">7 USD o 2700 CUP</span>
+          </h3>
+          <p>3 fotos 5x7 editadas e impresas</p>
+          <p>6 postales de bolsillo</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #2 (Bebé y familia)</span>
+            <span class="price">12 USD o 4300 CUP</span>
+          </h3>
+          <p>5 fotos 5x7 impresas</p>
+          <p>1 ampliación 8x12</p>
+          <p>6 postales de bolsillo</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sesiones de Fotos Naturales en Exteriores (Digitales) -->
+    <button class="category-toggle">Sesiones en Exteriores (Fotos Digitales) - Niños desde 1 año</button>
+    <div class="pricing-section">
+      <h2>Sesiones en Exteriores con Fotos Digitales</h2>
+      <div class="contracts-container">
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #1 (Solo el niño)</span>
+            <span class="price">5 USD o 1800 CUP</span>
+          </h3>
+          <p>3 fotos digitales editadas</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #2 (El niño y familia)</span>
+            <span class="price">10 USD o 3700 CUP</span>
+          </h3>
+          <p>8 fotos digitales editadas</p>
+          <p class="note">Nota: El costo de vestuarios adicionales es de 400 CUP por unidad</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contratos de Fotografía para Eventos -->
+    <button class="category-toggle">Fotografía para Eventos</button>
+    <div class="pricing-section">
+      <h2>Fotografía para Eventos Especiales</h2>
+      <div class="contracts-container">
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #1</span>
+            <span class="price">6500 CUP</span>
+          </h3>
+          <p>15 fotos digitales</p>
+          <p>7 fotos impresas 5x7 (a elegir por el cliente)</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #2</span>
+            <span class="price">9500 CUP</span>
+          </h3>
+          <p>20 fotos digitales</p>
+          <p>10 fotos impresas 5x7 (a elegir por el cliente)</p>
+          <p>1 ampliación 8x12</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Contrato #3</span>
+            <span class="price">19,500 CUP</span>
+          </h3>
+          <p>25 fotos digitales editadas</p>
+          <p>20 fotos 8x10</p>
+          <p>1 ampliación 8x12</p>
+          <p>1 álbum personalizado 8x10</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Paquetes de Fotos para Embarazadas -->
+    <button class="category-toggle">Paquetes para Embarazadas</button>
+    <div class="pricing-section">
+      <h2>Fotos para Embarazadas (Impresas en Estudio)</h2>
+      <div class="contracts-container">
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Combo #1 (Solo la embarazada)</span>
+            <span class="price">3500 CUP</span>
+          </h3>
+          <p>3 fotos 5x7 impresas</p>
+          <p>6 postales</p>
+          <p>1 escenografía y accesorios</p>
+        </div>
+        
+        <div class="contract">
+          <h3>
+            <span class="contract-name">Combo #2 (Embarazada y familia)</span>
+            <span class="price">5500 CUP</span>
+          </h3>
+          <p>5 fotos 5x7 impresas</p>
+          <p>6 postales de bolsillo</p>
+          <p>1 ampliación 8x12</p>
+          <p>2 escenografías</p>
+          <p>1 vestuario incluido (el cliente puede traer otro)</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Estudio Art & Impression. Todos los derechos reservados. Especialistas en fotografía de estudio y eventos en Cárdenas, Matanzas, Cuba.</p>
+  </footer>
+
+  <script>
+    // Script para manejar la funcionalidad de acordeón
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggles = document.querySelectorAll('.category-toggle');
+      
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const section = this.nextElementSibling;
+          
+          // Cerrar todas las secciones excepto la actual
+          toggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              otherToggle.classList.remove('active');
+              otherToggle.nextElementSibling.classList.remove('active');
+            }
+          });
+          
+          // Alternar la sección actual
+          this.classList.toggle('active');
+          section.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
