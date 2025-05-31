@@ -16,6 +16,8 @@
       --card-bg: #fff;
       --border-color: #ddd;
       --accent-color: #d4af37;
+      --album-color: #8B4513;
+      --book-color: #2E8B57;
     }
 
     * {
@@ -165,6 +167,25 @@
       color: var(--primary-color);
     }
 
+    .section-subheader {
+      text-align: center;
+      padding: 0.8rem;
+      margin: 1rem 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      position: relative;
+    }
+    
+    .album-header {
+      background-color: rgba(139, 69, 19, 0.1);
+      color: var(--album-color);
+    }
+    
+    .book-header {
+      background-color: rgba(46, 139, 87, 0.1);
+      color: var(--book-color);
+    }
+
     .contracts-container {
       padding: 0 1rem;
     }
@@ -188,6 +209,14 @@
       height: 100%;
       background-color: var(--accent-color);
     }
+    
+    .album-contract:before {
+      background-color: var(--album-color);
+    }
+    
+    .book-contract:before {
+      background-color: var(--book-color);
+    }
 
     .contract h3 {
       font-size: 1.2rem;
@@ -196,6 +225,14 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+    }
+    
+    .album-contract h3 {
+      color: var(--album-color);
+    }
+    
+    .book-contract h3 {
+      color: var(--book-color);
     }
 
     .contract h3 .contract-name {
@@ -216,10 +253,19 @@
     }
 
     .contract p:before {
-      content: '•';
+      content: '✓';
       position: absolute;
       left: 0;
       color: var(--accent-color);
+      font-weight: bold;
+    }
+    
+    .album-contract p:before {
+      color: var(--album-color);
+    }
+    
+    .book-contract p:before {
+      color: var(--book-color);
     }
 
     .note {
@@ -229,6 +275,31 @@
       padding: 0.5rem;
       background-color: rgba(212, 175, 55, 0.1);
       border-left: 3px solid var(--accent-color);
+    }
+    
+    .extra-photos {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: #f0f8ff;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .extra-photos h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+    
+    .photo-price {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed #ddd;
+    }
+    
+    .photo-price:last-child {
+      border-bottom: none;
     }
 
     footer {
@@ -275,6 +346,10 @@
       .contract h3 .price {
         text-align: left;
         margin-top: 0.5rem;
+      }
+      
+      .section-subheader {
+        font-size: 1.1rem;
       }
     }
 
@@ -503,6 +578,76 @@
           <p>1 ampliación 8x12</p>
           <p>2 escenografías</p>
           <p>1 vestuario incluido (el cliente puede traer otro)</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Nueva sección: Ofertas con Photo Álbum y Photobook -->
+    <button class="category-toggle">Ofertas con Photo Álbum y Photobook</button>
+    <div class="pricing-section">
+      <h2>Ofertas con Productos Premium</h2>
+      
+      <div class="section-subheader album-header">
+        📷 OFERTAS CON PHOTO ÁLBUM personalizado de cáratula dura
+      </div>
+      
+      <div class="contracts-container">
+        <div class="contract album-contract">
+          <h3>
+            <span class="contract-name">Contrato #1</span>
+            <span class="price">45 USD</span>
+          </h3>
+          <p>Photo Album con 10 fotos 6x8</p>
+          <p>10 postalitas de bolsillo</p>
+          <p>1 ampliación 12x18</p>
+        </div>
+        
+        <div class="contract album-contract">
+          <h3>
+            <span class="contract-name">Contrato #2</span>
+            <span class="price">70 USD</span>
+          </h3>
+          <p>Photo Álbum con 15 fotos 8x12</p>
+          <p>15 postalitas de bolsillo</p>
+          <p>1 Gigantografia en lona (sin enmarcar) 20x24</p>
+        </div>
+        
+        <div class="extra-photos">
+          <h3>Fotos extras para el Photo Álbum</h3>
+          <div class="photo-price">
+            <span>Fotos 6x8</span>
+            <span>550 CUP</span>
+          </div>
+          <div class="photo-price">
+            <span>Fotos 8x12</span>
+            <span>950 CUP</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-subheader book-header">
+        📷 Ofertas con PHOTOBOOK personalizado
+      </div>
+      
+      <div class="contracts-container">
+        <div class="contract book-contract">
+          <h3>
+            <span class="contract-name">Contrato #1</span>
+            <span class="price">60 USD</span>
+          </h3>
+          <p>1 Photobook 6x8 con 20 páginas</p>
+          <p>10 postalitas</p>
+          <p>1 ampliación 12x18</p>
+        </div>
+        
+        <div class="contract book-contract">
+          <h3>
+            <span class="contract-name">Contrato #2</span>
+            <span class="price">115 USD</span>
+          </h3>
+          <p>Photobook 8x12 con 20 páginas</p>
+          <p>15 postalitas de bolsillo</p>
+          <p>Gigantografía 20x24 en lona (sin enmarcar)</p>
         </div>
       </div>
     </div>
