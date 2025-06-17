@@ -423,7 +423,7 @@
 
     <main>
         <section class="gallery-container" id="galleryContainer">
-            <!-- Las imágenes se cargarán dinámicamente -->
+            <!-- Las imágenes se cargarán dinámicamente de forma aleatoria -->
         </section>
     </main>
 
@@ -450,11 +450,17 @@
     </footer>
 
     <script>
-        // Imágenes de embarazo (sin IMG_3228.webp)
+        // Imágenes de embarazo existentes + nuevas imágenes
         const pregnancyImages = [
+            // Imágenes existentes
             "IMG_3203.webp", "IMG_3213.webp", 
             "IMG_3232.webp", "IMG_3249.webp", "IMG_3282.webp", 
-            "IMG_3368.webp", "IMG_3768.webp", "IMG_3917.webp"
+            "IMG_3368.webp", "IMG_3768.webp", "IMG_3917.webp",
+            
+            // Nuevas imágenes
+            "IMG_3346.webp", "IMG_3362.webp", "IMG_3375.webp", 
+            "IMG_3380.webp", "IMG_3398.webp", "IMG_3433.webp", 
+            "IMG_3461.webp", "IMG_3468.webp", "IMG_3472.webp"
         ];
 
         // Referencias a elementos del DOM
@@ -465,11 +471,24 @@
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
 
-        // Cargar galería completa (sin paginación)
-        function loadGallery() {
+        // Función para mezclar array aleatoriamente (algoritmo de Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Cargar galería con imágenes aleatorias
+        function loadRandomGallery() {
             galleryContainer.innerHTML = '';
             
-            pregnancyImages.forEach(image => {
+            // Crear una copia del array original y mezclarlo
+            const shuffledImages = [...pregnancyImages];
+            shuffleArray(shuffledImages);
+            
+            shuffledImages.forEach(image => {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
                 
@@ -516,8 +535,8 @@
             });
         });
 
-        // Cargar la galería cuando la página esté lista
-        document.addEventListener('DOMContentLoaded', loadGallery);
+        // Cargar la galería aleatoria cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', loadRandomGallery);
     </script>
 </body>
 </html>
