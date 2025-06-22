@@ -18,6 +18,7 @@
       --accent-color: #d4af37;
       --album-color: #8B4513;
       --book-color: #2E8B57;
+      --kids-color: #E91E63;
     }
 
     * {
@@ -185,6 +186,11 @@
       background-color: rgba(46, 139, 87, 0.1);
       color: var(--book-color);
     }
+    
+    .kids-header {
+      background-color: rgba(233, 30, 99, 0.1);
+      color: var(--kids-color);
+    }
 
     .contracts-container {
       padding: 0 1rem;
@@ -217,6 +223,10 @@
     .book-contract:before {
       background-color: var(--book-color);
     }
+    
+    .kids-contract:before {
+      background-color: var(--kids-color);
+    }
 
     .contract h3 {
       font-size: 1.2rem;
@@ -233,6 +243,10 @@
     
     .book-contract h3 {
       color: var(--book-color);
+    }
+    
+    .kids-contract h3 {
+      color: var(--kids-color);
     }
 
     .contract h3 .contract-name {
@@ -266,6 +280,10 @@
     
     .book-contract p:before {
       color: var(--book-color);
+    }
+    
+    .kids-contract p:before {
+      color: var(--kids-color);
     }
 
     .note {
@@ -406,9 +424,9 @@
   </section>
 
   <main class="pricing-container">
-    <!-- Contratos de Fotos de Estudio (Impresas) -->
-    <button class="category-toggle active">Fotos de Estudio (Fotos Impresas) - Bebé</button>
-    <div class="pricing-section active">
+    <!-- Contratos de Fotos de Estudio (Impresas) - AHORA CERRADO AL INICIO -->
+    <button class="category-toggle">Fotos de Estudio (Fotos Impresas) - Bebé</button>
+    <div class="pricing-section">
       <h2>Fotos de Estudio Impresas para Bebé</h2>
       <div class="contracts-container">
         <div class="contract">
@@ -516,6 +534,51 @@
       </div>
     </div>
     
+    <!-- Fotografía para Niños (A partir de 1 año) -->
+    <button class="category-toggle">Fotografía para Niños (A partir de 1 año)</button>
+    <div class="pricing-section">
+      <h2>Fotografía para Niños (A partir de 1 año)</h2>
+      <div class="contracts-container">
+        <div class="contract kids-contract">
+          <h3>
+            <span class="contract-name">Contrato #1 - Fotos de Estudio</span>
+            <span class="price">4500 CUP</span>
+          </h3>
+          <p>5 fotos 5x7</p>
+          <p>1 ampliación 8x12</p>
+          <p>5 postales de bolsillo</p>
+          <p>2 cambios de ropa</p>
+          <p>Incluye escenografía y accesorios</p>
+        </div>
+        
+        <div class="contract kids-contract">
+          <h3>
+            <span class="contract-name">Contrato #2 - Estudio y Exteriores</span>
+            <span class="price">10,500 CUP</span>
+          </h3>
+          <p>Álbum personalizado 5x7</p>
+          <p>10 fotos 5x7 (5 estudio, 5 exteriores)</p>
+          <p>1 ampliación 8x12</p>
+          <p>10 postales de bolsillo</p>
+          <p>5 cambios de ropa</p>
+          <p>Incluye escenografía, accesorios y 1 vestuario para el niño</p>
+        </div>
+        
+        <div class="contract kids-contract">
+          <h3>
+            <span class="contract-name">Contrato #3 - Fotos Premium</span>
+            <span class="price">15,500 CUP</span>
+          </h3>
+          <p>Álbum personalizado 8x10</p>
+          <p>10 fotos 8x10</p>
+          <p>1 ampliación 8x12</p>
+          <p>10 postales de bolsillo</p>
+          <p>5 cambios de ropa</p>
+          <p>Incluye escenografía, accesorios y 1 vestuario para el niño</p>
+        </div>
+      </div>
+    </div>
+    
     <!-- Contratos de Fotografía para Eventos -->
     <button class="category-toggle">Fotografía para Eventos</button>
     <div class="pricing-section">
@@ -582,7 +645,7 @@
       </div>
     </div>
     
-    <!-- Nueva sección: Ofertas con Photo Álbum y Photobook -->
+    <!-- Ofertas con Photo Álbum y Photobook -->
     <button class="category-toggle">Ofertas con Photo Álbum y Photobook</button>
     <div class="pricing-section">
       <h2>Ofertas con Productos Premium</h2>
